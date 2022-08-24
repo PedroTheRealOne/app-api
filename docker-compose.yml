@@ -12,6 +12,7 @@ services:
       - gems:/.gems
     environment:
       - SECRET_KEY_BASE=development
+      - TOKEN_ALGORITHM=HS512
       - RAILS_ENV=development
       - DATABASE_NAME=app-api
       - DATABASE_HOST=postgres
