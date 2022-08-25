@@ -8,5 +8,12 @@ Rails.application.routes.draw do
     controller :sessions do
       post "/sessions" => :create
     end
+
+    controller :posts do
+      get "/posts" => :index
+      get "/posts/:id" => :show
+      post "/posts" => :create
+      patch "/posts/:id" => :update
+    end
   end
 end
