@@ -4,11 +4,12 @@ class FollowersController < ApplicationController
   # GET /followers
   def index
     @followers = current_user.followers
+    @current_user = current_user
   end
 
   # POST /followers
   def create
-    @follower = current_user.followings.new(user_id: params[:user_id])
+    @follower = Followship.new(user_id: params[:user_id], follower_id: current_user.id)
 
     if @follower.save
       render json: @follower, status: :created
@@ -19,10 +20,7 @@ class FollowersController < ApplicationController
 
   # DELETE /followers/:id
   def destroy
-    @follower = Follower.where(user_id: current_user.id, follower_id: params[:id]).first
-
-    # FOLLOWSHIP ID!!
-    # @follower = Follower.find(id = params[:id]) if @follower.nil?
+    @follower = Followship.find(id = params[:id]) if @follower.nil?
 
     if @follower && @follower.destroy
       render json: { message: "You are no longer following this user" }, status: :ok
