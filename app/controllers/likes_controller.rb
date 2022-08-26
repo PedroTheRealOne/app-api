@@ -1,9 +1,9 @@
-class Likes < ApplicationController
+class LikesController < ApplicationController
   before_action :authenticate!
 
   # GET /likes
   def index
-    @likes = current_user.likes
+    @likes = Like.all
   end
 
   # POST /likes
@@ -17,9 +17,20 @@ class Likes < ApplicationController
     end
   end
 
+  # DELETE /likes/:id
+  def destroy
+    @like = current_user.likes.find_by_id(params[:id])
+
+    if @like && @like.destroy
+      head :ok
+    else
+      render json: { error: "Like not found" }, status: :not_found
+    end
+  end
+
   private
 
   def like_params
-    params.permit(:user_id, :post_id)
+    params.permit(:post_id)
   end
 end

@@ -15,5 +15,10 @@ Rails.application.routes.draw do
       post "/posts" => :create
       patch "/posts/:id" => :update
     end
+
+    controller :likes do
+      get "/likes" => :index
+      post "/likes" => :create
+    end
   end
 end

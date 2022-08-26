@@ -9,9 +9,9 @@ class PostsController < ApplicationController
 
   # GET /posts/:id
   def show
-    if @post = current_user.posts.find(params[:id])
-      render json: @post
-    else
+    @post = current_user.posts.find_by_id(params[:id])
+
+    unless @post
       render json: { error: "Post not found" }, status: :not_found
     end
   end
