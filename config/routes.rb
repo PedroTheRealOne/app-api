@@ -20,5 +20,11 @@ Rails.application.routes.draw do
       get "/likes" => :index
       post "/likes" => :create
     end
+
+    controller :followers do
+      get "/followers" => :index
+      post "/followers" => :create
+      delete "/followers/:id" => :destroy
+    end
   end
 end
