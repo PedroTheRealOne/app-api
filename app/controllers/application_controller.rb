@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  helper_method :current_user
+
   def current_user
     token = request.headers["Authorization"].to_s.gsub("Bearer ", "")
     @current_user ||= Token.new.decode(token)

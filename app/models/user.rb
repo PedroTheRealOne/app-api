@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :followships
 
   has_many :followers, through: :followships
-  has_many :followings, through: :followships, source: :user
+  has_many :followings, through: :followships, source: :follower
 end

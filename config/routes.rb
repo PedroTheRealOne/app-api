@@ -26,5 +26,11 @@ Rails.application.routes.draw do
       post "/followers" => :create
       delete "/followers/:id" => :destroy
     end
+
+    controller :followings do
+      get "/followings" => :index
+      post "/followings" => :create
+      delete "/followings/:id" => :destroy
+    end
   end
 end
