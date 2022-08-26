@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_181042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "likes", force: :cascade do |t|
+  create_table "likes", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false
