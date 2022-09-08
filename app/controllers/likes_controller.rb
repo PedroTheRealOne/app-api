@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   # GET /likes
   def index
-    @likes = Like.all
+    @likes = current_user.likes.all
   end
 
   # POST /likes
@@ -19,7 +19,7 @@ class LikesController < ApplicationController
 
   # DELETE /likes/:id
   def destroy
-    @like = current_user.likes.find_by_id(params[:id])
+    @like = current_user.likes.find_by(post_id: params[:id])
 
     if @like && @like.destroy
       head :ok

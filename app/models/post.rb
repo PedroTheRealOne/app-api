@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes
 
-  def get_likes
-    Like.where(post_id: id)
+  def liked_by?(user)
+    likes.where(user_id: user.id).any?
   end
 end
